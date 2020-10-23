@@ -30,6 +30,8 @@ namespace Scaleform
         static void CloseMenu(const RE::FxDelegateArgs& a_params);
         static void Log(const RE::FxDelegateArgs& a_params);
         static void PlaySound(const RE::FxDelegateArgs& a_params);
+        static void AdvanceLevel([[maybe_unused]] const RE::FxDelegateArgs& a_params);
+        static void GetPlayerLevel(const RE::FxDelegateArgs& a_params);
 
         void OnMenuOpen();
         void OnMenuClose();

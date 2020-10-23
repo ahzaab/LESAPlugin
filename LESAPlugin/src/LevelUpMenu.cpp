@@ -45,6 +45,8 @@ namespace Scaleform
         a_cbReg->Process("CloseMenu", CloseMenu);
         a_cbReg->Process("Log", Log);
         a_cbReg->Process("PlaySound", PlaySound);
+        a_cbReg->Process("AdvanceLevel", AdvanceLevel);
+        a_cbReg->Process("GetPlayerLevel", GetPlayerLevel);
 
         // Add other funcationality here for GameDelegate.call
     }
@@ -129,6 +131,28 @@ namespace Scaleform
         RE::PlaySound(a_params[0].GetString());
     }
 
+    void LevelUpMenu::AdvanceLevel([[maybe_unused]] const RE::FxDelegateArgs& a_params)
+    {
+        assert(a_params.GetArgCount() == 0);
+
+        auto player = RE::PlayerCharacter::GetSingleton();
+        player->skills->AdvanceLevel(false);
+    }
+
+    void LevelUpMenu::GetPlayerLevel(const RE::FxDelegateArgs& a_params)
+    {
+        assert(a_params.GetArgCount() == 0);
+
+        RE::FxResponseArgs<1> response;
+        RE::GFxValue          retVal;
+
+        auto player = RE::PlayerCharacter::GetSingleton();
+        auto level = static_cast<double>(player->GetLevel());
+        retVal.SetNumber(level);
+
+        response.Add(retVal);
+        a_params.Respond(response);
+    }
 
     void LevelUpMenu::OnMenuOpen()
     {
