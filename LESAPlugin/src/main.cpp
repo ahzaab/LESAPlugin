@@ -2,8 +2,7 @@
 
 #include <memory>
 
-#include "Events.h"
-#include "Scaleform.h"
+#include "LevelUpMenu.h"
 #include "version.h"
 #include "AHZConsole.h"
 
@@ -23,8 +22,6 @@ namespace
         switch (a_msg->type) {
         case SKSE::MessagingInterface::kDataLoaded:
         {
-            Events::Install();
-            Scaleform::RegisterCreators();
         } break;
         }
     }
@@ -96,8 +93,8 @@ extern "C"
 
             SKSE::Init(a_skse);
 
-            // Only needed for hooks
-            //SKSE::AllocTrampoline(1 << 4);
+            //auto id = REL::IDDatabase::get().offset2id(0x16B4C58);
+            //logger::info("id: {}"sv, id);
 
             auto messaging = SKSE::GetMessagingInterface();
             if (!messaging->RegisterListener("SKSE", MessageHandler)) {
@@ -107,8 +104,8 @@ extern "C"
             logger::info("registered listener"sv);
 
 
-            logger::info("Registering Callbacks"sv);
-            Scaleform::RegisterCallbacks();
+            logger::info("Registering Hooks"sv);
+            Scaleform::LevelUpMenuHook::InstallHooks();
 
             logger::info("LESA Plugin loaded"sv);
 

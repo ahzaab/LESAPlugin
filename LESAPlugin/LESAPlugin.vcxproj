@@ -163,14 +163,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Events.cpp" />
     <ClCompile Include="src\LevelUpMenu.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Scaleform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\AHZConsole.h" />
-    <ClInclude Include="include\Events.h" />
     <ClInclude Include="include\LevelUpMenu.h" />
     <ClInclude Include="include\Offsets.h" />
     <ClInclude Include="include\Scaleform.h" />
